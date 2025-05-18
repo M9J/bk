@@ -18,7 +18,11 @@
   "chatgpt",
   "github_bookmarks_actions",
   "github_bookmarks_repo",
+  "github_bookmarks",
   "wikipedia",
   "fakespot",
-  "amazon"
+  "amazon",
+  "github_bk_actions",
+  "github_bk_repo",
+  "github_bk"
 ]
