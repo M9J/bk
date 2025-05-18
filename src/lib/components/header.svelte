@@ -1,11 +1,12 @@
 <script>
   import { selectedPage } from "$lib/stores/main";
 
-  let brandTitle = "BOOKMARKS";
+  const brandTitle = "BOOKMARKS";
+  const brandLink  = 'https://m9j.github.io/bk'
 </script>
 
 <div class="header">
-  <a class="brand" href="https://m9j.github.io/bookmarks">{brandTitle}</a>
+  <a class="brand" href="{brandLink}">{brandTitle}</a>
   <select class="view-list" id="view-list" bind:value={$selectedPage}>
     <option value="home">Home</option>
     <option value="settings">Settings</option>
