@@ -86,7 +86,7 @@
   .bk-meta-info {
     display: flex;
     flex-direction: column;
-    padding-left: 8px;
+    padding-left: 16px;
     justify-content: center;
   }
 
