@@ -27,6 +27,7 @@
   <div class="bk-meta">
     <div class="bk-icon">
       <img
+        class="bk-icon-img"
         src={faviconLink}
         alt="icon"
         width="100%"
@@ -57,7 +58,7 @@
     padding: 16px;
     text-decoration: none;
     gap: 8px;
-    border-radius: 8px;
+    border-radius: 18px;
     box-sizing: border-box;
     width: 100%;
   }
@@ -80,7 +81,12 @@
     object-fit: contain;
     background-color: #fff;
     padding: 8px;
+    border-radius: 16px;
+  }
+
+  .bk-icon-img {
     border-radius: 8px;
+    overflow: hidden;
   }
 
   .bk-meta-info {
