@@ -27,32 +27,6 @@ export async function getBookmarksConfigs() {
   }
 }
 
-export async function getFavicons1() {
-  const alinks = document.querySelectorAll("a.bookmark");
-  const hasAlinks = alinks ? alinks.length > 0 : false;
-  if (hasAlinks) {
-    for (let i = 0; i < alinks.length; i++) {
-      const item = alinks.item(i);
-      const href = item.getAttribute("href");
-      const bkIcon = item.getAttribute("data-bookmark-icon");
-      let iconLink = null;
-      if (bkIcon) iconLink = bkIcon;
-      else if (href) {
-        const hrefURL = new URL(href);
-        const baseHref = hrefURL.protocol + "//" + hrefURL.hostname;
-        iconLink = CONFIG.faviconFetchServiceURL(baseHref);
-      }
-      const itemIconImage = item.getElementsByTagName("img").item(0);
-      if (itemIconImage) {
-        if (iconLink) itemIconImage.setAttribute("src", iconLink);
-        itemIconImage.onerror = function () {
-          this.src = IMAGE_PLACEHOLDER;
-        };
-      }
-    }
-  }
-}
-
 export async function getFaviconsLinks(bookmarkConfigs: IBookmark[]) {
   const iconLinks: any = {};
   const hasBookmarkConfigs = Array.isArray(bookmarkConfigs) ? bookmarkConfigs.length > 0 : false;
