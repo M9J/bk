@@ -1,5 +1,6 @@
 export async function getCurrentVersion() {
-  const currentVersionURL = "/version.json";
+  const basePath = import.meta.env.MODE === "production" ? "/bk" : "";
+  const currentVersionURL = basePath + "/version.json";
   try {
     const currentVersionResp = await fetch(currentVersionURL);
     if (!currentVersionResp.ok) {
