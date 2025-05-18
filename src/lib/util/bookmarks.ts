@@ -3,7 +3,8 @@ import { CONFIG } from "$lib/configs/main";
 import type { IBookmark } from "$lib/interfaces/Bookmark";
 
 export async function getBookmarksConfigs() {
-  const bookmarksFolder = "/bookmarks";
+  const basePath = import.meta.env.MODE === "production" ? "/bk" : "";
+  const bookmarksFolder = basePath + "/bookmarks";
   try {
     const bookmarksFolderIndexModule = await fetch(bookmarksFolder + "/index.json");
     if (bookmarksFolderIndexModule) {
