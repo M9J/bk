@@ -90,6 +90,14 @@
     justify-content: center;
   }
 
+  .bk-name {
+    font-weight: 500;
+  }
+
+  .bk-link {
+    font-size: 0.9em;
+  }
+
   .bk-title {
     font-size: 20px;
   }
