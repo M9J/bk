@@ -1,7 +1,7 @@
 {
   "name": "Bookmarks",
   "short_name": "Bookmarks",
-  "start_url": "/",
+  "start_url": "/bk/index.html",
   "display": "standalone",
   "theme_color": "#FFFFFF",
   "background_color": "#000000",
