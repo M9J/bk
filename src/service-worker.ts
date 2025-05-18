@@ -1,5 +1,4 @@
 const CACHE_NAME = "mybookmarks-dyncache-v1";
-// const folderPattern = /^\/(src|dist)?\/?(bookmarks\/)?/;
 
 // Define API endpoint to exclude from caching
 const excludedAPI = "https://api.github.com/repos/m9j/bk/contents/version.json?ref=gh-pages";
@@ -13,9 +12,7 @@ self.addEventListener("fetch", (event: any) => {
     return;
   }
 
-  debugger;
   // Normal caching logic for other requests
-  // if (folderPattern.test(requestURL.pathname)) {
   event.respondWith(
     caches
       .match(event.request)
@@ -35,5 +32,4 @@ self.addEventListener("fetch", (event: any) => {
         console.error("Fetch failed:", event.request.url, error);
       })
   );
-  // }
 });
