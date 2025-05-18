@@ -1,0 +1,160 @@
+<script lang="ts">
+  import { IMAGE_PLACEHOLDER } from "$lib/base64/images";
+  import type { IBookmark } from "$lib/interfaces/Bookmark";
+
+  export let bookmark: IBookmark;
+  export let faviconLink: string;
+
+  const link = bookmark.LINK || "javascript:void(0)";
+  let name = bookmark.NAME || bookmark.LINK;
+
+  function handleError(event: Event) {
+    const target = event?.target as HTMLImageElement;
+    if (target) {
+      target.src = IMAGE_PLACEHOLDER;
+    }
+  }
+</script>
+
+<a
+  class="bk"
+  href={link}
+  target="_blank"
+  rel="noopener noreferrer"
+  title={name}
+  data-bookmark-icon={bookmark.ICON}
+>
+  <div class="bk-meta">
+    <div class="bk-icon">
+      <img
+        src={faviconLink}
+        alt="icon"
+        width="100%"
+        height="100%"
+        loading="lazy"
+        on:error={handleError}
+      />
+    </div>
+    <div class="bk-meta-info">
+      <div class="bk-name">{bookmark.NAME}</div>
+      <div class="bk-link">{bookmark.LINK}</div>
+    </div>
+  </div>
+  {#if bookmark.TITLE}
+    <div class="bk-title">{bookmark.TITLE}</div>
+  {/if}
+  {#if bookmark.DESC}
+    <div class="bk-desc">{bookmark.DESC}</div>
+  {/if}
+</a>
+
+<style>
+  .bk {
+    background-color: #111;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    text-decoration: none;
+    gap: 8px;
+    border-radius: 8px;
+    box-sizing: border-box;
+    flex-grow: 1;
+  }
+
+  .bk:hover {
+    background-color: #fff;
+    color: #000;
+  }
+
+  .bk-meta {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .bk-icon {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    min-height: 36px;
+    object-fit: contain;
+    background-color: #fff;
+    padding: 8px;
+    border-radius: 8px;
+  }
+
+  .bk-meta-info {
+    display: flex;
+    flex-direction: column;
+    padding-left: 8px;
+    justify-content: center;
+  }
+
+  .bk-title {
+    font-size: 20px;
+  }
+
+  .bk-desc {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    overflow: hidden;
+  }
+
+  .bk-name,
+  .bk-link,
+  .bk-title {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+  }
+  /* 
+  @media (max-width: 500px) {
+    .bk {
+      outline: 2px solid lightblue;
+      flex-basis: 100%; 
+      min-width: 100%; 
+    }
+  }
+
+  @media (min-width: 501px) and (max-width: 1024px) {
+    .bk {
+      outline: 2px solid lightgreen;
+      flex-basis: calc(50% - 10px); 
+      min-width: calc(50% - 10px); 
+    }
+  }
+
+  @media (min-width: 1025px) {
+    .bk {
+      outline: 2px solid lightcoral;
+      flex-basis: calc(33.33% - 10px); 
+      min-width: calc(33.33% - 10px); 
+    }
+  } */
+
+  @media (max-width: 500px) {
+    .bk {
+      flex: 1 1 100%;
+      min-width: 100%;
+    }
+  }
+
+  @media (min-width: 501px) and (max-width: 1024px) {
+    .bk {
+      flex: 1 1 calc(50% - 10px);
+      min-width: calc(50% - 10px);
+    }
+  }
+
+  @media (min-width: 1025px) {
+    .bk {
+      flex: 1 1 calc(33.33% - 10px);
+      min-width: calc(33.33% - 10px);
+    }
+  }
+</style>
