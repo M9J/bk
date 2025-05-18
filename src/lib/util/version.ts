@@ -16,7 +16,7 @@ export async function getCurrentVersion() {
 
 export async function checkForLatestVersion() {
   const latestVersionAPIURL =
-    "https://api.github.com/repos/m9j/bookmarks/contents/version.json?ref=gh-pages";
+    "https://api.github.com/repos/m9j/bk/contents/version.json?ref=gh-pages";
   try {
     const latestVersionResp = await fetch(latestVersionAPIURL, { cache: "no-store" });
     if (!latestVersionResp.ok) {
