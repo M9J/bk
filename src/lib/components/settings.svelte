@@ -4,8 +4,12 @@
   import { checkForLatestVersion, getCurrentVersion } from "$lib/util/version";
   import { get, writable } from "svelte/store";
 
-  getCurrVersion();
   const isNew = writable(false);
+
+  (async () => {
+    await getCurrVersion();
+    await checkLatestVersion();
+  })();
 
   async function getCurrVersion() {
     const currentVersionResp = await getCurrentVersion();
@@ -25,10 +29,12 @@
       <div>
         Versions:<br />
         {#if $currentVersion}
-          {unixEpochToVersion($currentVersion)} [CURRENT] <br />
+          <span class="monospace">{unixEpochToVersion($currentVersion)} [CURRENT]</span> <br />
         {/if}
         {#if $latestVersion}
-          <span class:is-new={$isNew}>{unixEpochToVersion($latestVersion)} [LATEST]</span><br />
+          <span class="monospace" class:is-new={$isNew}
+            >{unixEpochToVersion($latestVersion)} [LATEST]</span
+          ><br />
         {/if}
       </div>
     {/if}
@@ -74,5 +80,9 @@
 
   .is-new {
     color: #ffff00;
+  }
+
+  .monospace {
+    font-family: monospace;
   }
 </style>

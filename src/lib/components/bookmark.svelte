@@ -59,7 +59,7 @@
     gap: 8px;
     border-radius: 8px;
     box-sizing: border-box;
-    flex-grow: 1;
+    width: 100%;
   }
 
   .bk:hover {
@@ -111,50 +111,5 @@
     line-clamp: 1;
     overflow: hidden;
     overflow-wrap: anywhere;
-  }
-  /* 
-  @media (max-width: 500px) {
-    .bk {
-      outline: 2px solid lightblue;
-      flex-basis: 100%; 
-      min-width: 100%; 
-    }
-  }
-
-  @media (min-width: 501px) and (max-width: 1024px) {
-    .bk {
-      outline: 2px solid lightgreen;
-      flex-basis: calc(50% - 10px); 
-      min-width: calc(50% - 10px); 
-    }
-  }
-
-  @media (min-width: 1025px) {
-    .bk {
-      outline: 2px solid lightcoral;
-      flex-basis: calc(33.33% - 10px); 
-      min-width: calc(33.33% - 10px); 
-    }
-  } */
-
-  @media (max-width: 500px) {
-    .bk {
-      flex: 1 1 100%;
-      min-width: 100%;
-    }
-  }
-
-  @media (min-width: 501px) and (max-width: 1024px) {
-    .bk {
-      flex: 1 1 calc(50% - 10px);
-      min-width: calc(50% - 10px);
-    }
-  }
-
-  @media (min-width: 1025px) {
-    .bk {
-      flex: 1 1 calc(33.33% - 10px);
-      min-width: calc(33.33% - 10px);
-    }
   }
 </style>
