@@ -2,7 +2,7 @@
   import { currentVersion, latestVersion } from "$lib/stores/main";
   import { hardReloadApplication, unixEpochToVersion } from "$lib/util/settings";
   import { checkForLatestVersion, getCurrentVersion } from "$lib/util/version";
-  import { writable } from "svelte/store";
+  import { get, writable } from "svelte/store";
 
   getCurrVersion();
   const isNew = writable(false);
@@ -15,7 +15,7 @@
   async function checkLatestVersion() {
     const latestVersionResp = await checkForLatestVersion();
     latestVersion.update((v) => (v = latestVersionResp));
-    isNew.update((v) => (v = Number(latestVersion) > Number(currentVersion)));
+    isNew.update((v) => (v = Number(get(latestVersion)) > Number(get(currentVersion))));
   }
 </script>
 
@@ -28,7 +28,7 @@
           {unixEpochToVersion($currentVersion)} [CURRENT] <br />
         {/if}
         {#if $latestVersion}
-          <span class:is-new={isNew}>{unixEpochToVersion($latestVersion)} [LATEST]</span><br />
+          <span class:is-new={$isNew}>{unixEpochToVersion($latestVersion)} [LATEST]</span><br />
         {/if}
       </div>
     {/if}
