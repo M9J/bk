@@ -35,7 +35,7 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    background-color: #000;
+    background-color: #111;
     min-height: 0;
     overflow: auto;
   }

@@ -56,8 +56,9 @@
     gap: 16px;
     padding: 16px;
     align-content: flex-start;
-    background-color: #333;
+    background-color: #000;
     color: #fff;
+    border-top: 1px solid #222;
   }
 
   .rows {
