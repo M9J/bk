@@ -15,7 +15,7 @@
   async function checkLatestVersion() {
     const latestVersionResp = await checkForLatestVersion();
     latestVersion.update((v) => (v = latestVersionResp));
-    isNew.update((v) => Number(latestVersion) > Number(currentVersion));
+    isNew.update((v) => (v = Number(latestVersion) > Number(currentVersion)));
   }
 </script>
 
