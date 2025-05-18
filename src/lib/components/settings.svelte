@@ -20,23 +20,27 @@
 </script>
 
 <div class="settings-container hide" id="settings-container">
-  {#if $currentVersion || $latestVersion}
-    <div>
-      Versions:<br />
-      {#if $currentVersion}
-        {unixEpochToVersion($currentVersion)} [CURRENT] <br />
-      {/if}
-      {#if $latestVersion}
-        <span class:is-new={isNew}>{unixEpochToVersion($latestVersion)} [LATEST]</span><br />
-      {/if}
-    </div>
-  {/if}
-  <button class="settings-button" on:click={() => checkLatestVersion()}>
-    Check for latest version
-  </button>
-  <button class="settings-button" on:click={() => hardReloadApplication()}>
-    Hard reload application
-  </button>
+  <div class="columns">
+    {#if $currentVersion || $latestVersion}
+      <div>
+        Versions:<br />
+        {#if $currentVersion}
+          {unixEpochToVersion($currentVersion)} [CURRENT] <br />
+        {/if}
+        {#if $latestVersion}
+          <span class:is-new={isNew}>{unixEpochToVersion($latestVersion)} [LATEST]</span><br />
+        {/if}
+      </div>
+    {/if}
+  </div>
+  <div class="rows">
+    <button class="settings-button" on:click={() => checkLatestVersion()}>
+      Check for latest version
+    </button>
+    <button class="settings-button" on:click={() => hardReloadApplication()}>
+      Hard reload application
+    </button>
+  </div>
 </div>
 
 <style>
@@ -48,6 +52,19 @@
     align-content: flex-start;
     background-color: #333;
     color: #fff;
+  }
+
+  .rows {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .columns {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
   }
 
   .settings-button {
