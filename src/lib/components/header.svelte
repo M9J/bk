@@ -16,12 +16,12 @@
 <style>
   .header {
     padding: 16px;
-    background-color: #000;
     color: #fff;
     justify-content: space-between;
     display: flex;
     flex-direction: row;
     align-items: center;
+    border-top: 1px solid #222;
   }
 
   .brand {

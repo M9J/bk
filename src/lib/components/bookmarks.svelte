@@ -35,12 +35,10 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    background-color: #111;
-    min-height: 0;
-    overflow: auto;
   }
 
   .bk-container {
+    flex: 1;
     display: grid;
     gap: 16px;
     padding: 16px;

@@ -5,8 +5,30 @@
   import { selectedPage } from "$lib/stores/main";
 </script>
 
-<Bookmarks />
-<Header />
-{#if $selectedPage === "settings"}
-  <Settings />
-{/if}
+<div class="app-wrapper">
+  <Bookmarks />
+  <div class="app-bottom-wrapper">
+    <Header />
+    {#if $selectedPage === "settings"}
+      <Settings />
+    {/if}
+  </div>
+</div>
+
+<style>
+  .app-wrapper {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+    background-color: #000;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .app-bottom-wrapper {
+    position: sticky;
+    bottom: 0;
+    backdrop-filter: blur(100px);
+    background: rgba(0, 0, 0, 0.5);
+  }
+</style>
