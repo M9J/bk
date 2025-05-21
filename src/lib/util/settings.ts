@@ -20,13 +20,10 @@ export function unixEpochToVersion(timestamp: string) {
     const year = String(dt.getFullYear());
     const month = String(dt.getMonth() + 1).padStart(2, "0");
     const day = String(dt.getDate()).padStart(2, "0");
-    const secsTodayTillNow = dt.getHours() * 3600 + dt.getMinutes() * 60 + dt.getSeconds();
-    const secs = String(secsTodayTillNow).padStart(5, "0");
     const hh = String(dt.getHours());
     const mm = String(dt.getMinutes());
     const ss = String(dt.getSeconds());
-    // const version = `${year}.${month}${day}.${secs}`;
-    const version = `${year}.${month}${day}.${hh}${mm}${ss}`;
+    const version = `${year}` + `.` + `${month}${day}` + `.` + `${hh}${mm}${ss}`;
     return version;
   }
 }

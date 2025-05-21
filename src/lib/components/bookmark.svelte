@@ -60,7 +60,6 @@
     gap: 8px;
     border-radius: 18px;
     box-sizing: border-box;
-    width: 100%;
   }
 
   .bk:hover {

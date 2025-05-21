@@ -39,28 +39,10 @@
 
   .bk-container {
     flex: 1;
-    display: grid;
     gap: 16px;
     padding: 16px;
-    min-height: 0;
-    overflow: auto;
-  }
-
-  @media (max-width: 600px) {
-    .bk-container {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  @media (min-width: 601px) and (max-width: 1200px) {
-    .bk-container {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (min-width: 1201px) {
-    .bk-container {
-      grid-template-columns: repeat(3, 1fr);
-    }
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-auto-rows: min-content;
   }
 </style>
