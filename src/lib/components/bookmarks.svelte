@@ -8,7 +8,10 @@
   let allFaviconLinks: any = {};
   async function getBookmarks() {
     const bookmarksConfigs = await getBookmarksConfigs();
-    if (bookmarksConfigs) allBookmarksConfigs = bookmarksConfigs;
+    if (bookmarksConfigs) {
+      const sortedBookmarks = bookmarksConfigs.sort((a, b) => a.NAME.localeCompare(b.NAME));
+      allBookmarksConfigs = sortedBookmarks;
+    }
   }
   onMount(async () => {
     await getBookmarks();
