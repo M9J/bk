@@ -1,4 +1,5 @@
 {
   "NAME": "Duck AI",
-  "LINK": "https://duckduckgo.com/?q=DuckDuckGo+AI+Chat&ia=chat&duckai=1"
+  "LINK": "https://duckduckgo.com/?q=DuckDuckGo+AI+Chat&ia=chat&duckai=1",
+  "IS_PINNED": true
 }

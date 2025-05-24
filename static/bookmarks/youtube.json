@@ -1,4 +1,5 @@
 {
   "NAME": "YouTube",
-  "LINK": "https://youtube.com/"
+  "LINK": "https://youtube.com/",
+  "IS_PINNED": true
 }
