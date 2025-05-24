@@ -47,6 +47,16 @@
       Hard reload application
     </button>
   </div>
+  <br />
+  <div class="columns">
+    <div>Repo deploy status:</div>
+    <div>
+      <img
+        src="https://github.com/m9j/bk/actions/workflows/deploy.yml/badge.svg"
+        alt="Github Deploy Status"
+      />
+    </div>
+  </div>
 </div>
 
 <style>
