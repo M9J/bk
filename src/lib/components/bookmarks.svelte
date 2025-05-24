@@ -67,7 +67,6 @@
   }
 
   .bk-container-pinned {
-    flex: 1;
     gap: 16px;
     padding: 16px;
     display: grid;
@@ -76,7 +75,6 @@
   }
 
   .bk-container-grid {
-    flex: 1;
     gap: 16px;
     padding: 16px;
     display: grid;
