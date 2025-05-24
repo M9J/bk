@@ -69,6 +69,7 @@
   .bk-container-pinned {
     gap: 16px;
     padding: 16px;
+    padding-bottom: 0;
     display: grid;
     grid-template-columns: repeat(auto-fit, 84px);
     grid-auto-rows: min-content;
