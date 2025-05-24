@@ -4,5 +4,5 @@ export default {
 };
 
 function helloWorld() {
-  return `Hello World`;
+  return `Hello World from Lambda`;
 }

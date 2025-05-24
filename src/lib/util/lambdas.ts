@@ -9,14 +9,8 @@ export async function getLambdas() {
       const lambdasIndex = await lambdasFolderIndexModule.json();
       const hasLambdasIndex = Array.isArray(lambdasIndex) ? lambdasIndex.length > 0 : false;
       if (hasLambdasIndex) {
-        const sortedLambdaIndex = lambdasIndex.sort();
-        const lambdaFileFetchPromises = sortedLambdaIndex.map((lambdaFileName: string) =>
-          fetch(lambdasFolder + "/" + lambdaFileName + ".json")
-            .then((res) => res.json())
-            .then((res) => {
-              res.lambdaIndexName = lambdaFileName;
-              return res;
-            })
+        const lambdaFileFetchPromises = lambdasIndex.map(
+          (lambdaFileName: string) => import(lambdasFolder + "/" + lambdaFileName + ".lambda.js")
         );
         return await Promise.all(lambdaFileFetchPromises);
       }
@@ -28,6 +22,5 @@ export async function getLambdas() {
 
 export async function runLambda(lambdaFile: ILambda) {
   if (lambdaFile) {
-    
   }
 }
