@@ -1,4 +1,5 @@
 {
   "NAME": "Google",
-  "LINK": "https://google.com/"
+  "LINK": "https://google.com/",
+  "IS_PINNED": true
 }

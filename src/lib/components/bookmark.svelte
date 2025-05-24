@@ -36,10 +36,12 @@
         on:error={handleError}
       />
     </div>
-    <div class="bk-meta-info">
-      <div class="bk-name">{bookmark.NAME}</div>
-      <div class="bk-link">{bookmark.LINK}</div>
-    </div>
+    {#if !bookmark.IS_PINNED}
+      <div class="bk-meta-info">
+        <div class="bk-name">{bookmark.NAME}</div>
+        <div class="bk-link">{bookmark.LINK}</div>
+      </div>
+    {/if}
   </div>
   {#if bookmark.TITLE}
     <div class="bk-title">{bookmark.TITLE}</div>

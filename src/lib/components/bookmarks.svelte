@@ -5,12 +5,16 @@
   import Bookmark from "./bookmark.svelte";
 
   let allBookmarksConfigs: IBookmark[] = [];
+  let pinnedBookmarksConfigs: IBookmark[] = [];
+  let unpinnedBookmarksConfigs: IBookmark[] = [];
   let allFaviconLinks: any = {};
   async function getBookmarks() {
     const bookmarksConfigs = await getBookmarksConfigs();
     if (bookmarksConfigs) {
       const sortedBookmarks = bookmarksConfigs.sort((a, b) => a.NAME.localeCompare(b.NAME));
       allBookmarksConfigs = sortedBookmarks;
+      pinnedBookmarksConfigs = allBookmarksConfigs.filter((c) => c.IS_PINNED);
+      unpinnedBookmarksConfigs = allBookmarksConfigs.filter((c) => !c.IS_PINNED);
     }
   }
   onMount(async () => {
@@ -22,14 +26,30 @@
 
 <div class="bk-wrapper">
   <div class="bk-container">
-    {#each allBookmarksConfigs as bookmarkConfig}
-      {#if bookmarkConfig.bookmarkIndexName}
-        <Bookmark
-          bookmark={bookmarkConfig}
-          faviconLink={allFaviconLinks[bookmarkConfig.bookmarkIndexName]}
-        />
-      {/if}
-    {/each}
+    {#if pinnedBookmarksConfigs.length > 0}
+      <div class="bk-container-pinned">
+        {#each pinnedBookmarksConfigs as bookmarkConfig}
+          {#if bookmarkConfig.bookmarkIndexName}
+            <Bookmark
+              bookmark={bookmarkConfig}
+              faviconLink={allFaviconLinks[bookmarkConfig.bookmarkIndexName]}
+            />
+          {/if}
+        {/each}
+      </div>
+    {/if}
+    {#if unpinnedBookmarksConfigs.length > 0}
+      <div class="bk-container-grid">
+        {#each unpinnedBookmarksConfigs as bookmarkConfig}
+          {#if bookmarkConfig.bookmarkIndexName}
+            <Bookmark
+              bookmark={bookmarkConfig}
+              faviconLink={allFaviconLinks[bookmarkConfig.bookmarkIndexName]}
+            />
+          {/if}
+        {/each}
+      </div>
+    {/if}
   </div>
 </div>
 
@@ -41,6 +61,21 @@
   }
 
   .bk-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .bk-container-pinned {
+    flex: 1;
+    gap: 16px;
+    padding: 16px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 84px);
+    grid-auto-rows: min-content;
+  }
+
+  .bk-container-grid {
     flex: 1;
     gap: 16px;
     padding: 16px;
