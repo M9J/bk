@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { selectedPage } from "$lib/stores/main";
 
   const brandTitle = "BOOKMARKS";
@@ -21,7 +21,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    border-top: 1px solid #222;
+    border-top: 1px solid #000;
   }
 
   .brand {
