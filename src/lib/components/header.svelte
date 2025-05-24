@@ -30,4 +30,8 @@
     text-decoration: none;
     color: #fff;
   }
+
+  .view-list {
+    padding: 8px;
+  }
 </style>

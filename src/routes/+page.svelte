@@ -20,7 +20,7 @@
     flex: 1;
     min-height: 0;
     overflow: auto;
-    background-color: #000;
+    background-color: #222;
     display: flex;
     flex-direction: column;
   }
