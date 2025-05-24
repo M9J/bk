@@ -1,12 +1,14 @@
 <script>
   import Bookmarks from "$lib/components/bookmarks.svelte";
   import Header from "$lib/components/header.svelte";
+  import Lambdas from "$lib/components/lambdas.svelte";
   import Settings from "$lib/components/settings.svelte";
   import { selectedPage } from "$lib/stores/main";
 </script>
 
 <div class="app-wrapper">
   <Bookmarks />
+  <Lambdas />
   <div class="app-bottom-wrapper">
     <Header />
     {#if $selectedPage === "settings"}
