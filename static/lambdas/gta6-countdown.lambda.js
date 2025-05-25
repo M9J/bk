@@ -1,9 +1,8 @@
-export default {
-  prompt: "GTA VI Countdown Timer",
-  action: () => countdownTimer(),
-};
+export const prompt = "GTA VI Countdown Timer";
+export const action = () => countdownTimer();
 
 function countdownTimer() {
+  debugger;
   const releaseTimestamp = "1779753600000";
   const today = new Date();
   const releaseDate = new Date(Number(releaseTimestamp));

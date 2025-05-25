@@ -7,16 +7,37 @@
   onMount(async () => {
     const lambdaModules = await getLambdas();
     if (lambdaModules) {
-      const extractedLambdas = lambdaModules.map((lp) => lp.default);
-      const hasLambdas = Array.isArray(extractedLambdas) ? extractedLambdas.length > 0 : false;
+      console.log("lambdaModules", lambdaModules);
+      const hasLambdas = Array.isArray(lambdaModules) ? lambdaModules.length > 0 : false;
       if (hasLambdas) {
-        lambdas = extractedLambdas;
-        lambdas.forEach((l: ILambda) => {
-          if (!l.result && l.action && typeof l.action === "function") l.result = l.action();
-        });
+        for (let i = 0; i < 2; i++) lambdaModules.push(...lambdaModules);
+        const lambdasCollection = [];
+        for (const lambdaModule of lambdaModules) {
+          lambdasCollection.push({
+            ...lambdaModule,
+            result: null,
+          });
+        }
+        lambdas = lambdasCollection;
+        runLambdas(lambdas);
       }
     }
   });
+
+  async function runLambdas(lambdas: ILambda[]) {
+    const hasLambdas = Array.isArray(lambdas) ? lambdas.length > 0 : false;
+    if (hasLambdas) {
+      for (const lambda of lambdas) {
+        runLambda(lambda);
+      }
+    }
+  }
+
+  async function runLambda(lambda: ILambda) {
+    if (lambda.action && typeof lambda.action === "function") {
+      lambda.result = lambda.action();
+    }
+  }
 </script>
 
 {#if lambdas.length > 0}

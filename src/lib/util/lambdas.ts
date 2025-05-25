@@ -1,5 +1,3 @@
-import type { ILambda } from "$lib/interfaces/Lambda";
-
 export async function getLambdas() {
   const basePath = import.meta.env.MODE === "production" ? "/bk" : "";
   const lambdasFolder = basePath + "/lambdas";
@@ -17,10 +15,5 @@ export async function getLambdas() {
     }
   } catch (err) {
     console.error("lambdas folder or lambdas/index.json not found. Error:", err);
-  }
-}
-
-export async function runLambda(lambdaFile: ILambda) {
-  if (lambdaFile) {
   }
 }
