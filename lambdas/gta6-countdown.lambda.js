@@ -1,6 +1,6 @@
 export default {
-  title: "GTA VI Countdown Timer",
-  mainFn: () => countdownTimer(),
+  prompt: "GTA VI Countdown Timer",
+  action: () => countdownTimer(),
 };
 
 function countdownTimer() {

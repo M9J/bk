@@ -1,6 +1,6 @@
 export default {
-  title: "Hello World",
-  mainFn: () => helloWorld(),
+  prompt: "Hello World",
+  action: () => helloWorld(),
 };
 
 function helloWorld() {
