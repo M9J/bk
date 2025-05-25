@@ -12,6 +12,9 @@
     <option value="settings">Settings</option>
   </select>
 </div>
+{#if $selectedPage !== "home"}
+  <hr class="separator" />
+{/if}
 
 <style>
   .header {
@@ -21,7 +24,6 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    border-top: 1px solid #000;
   }
 
   .brand {
@@ -33,5 +35,12 @@
 
   .view-list {
     padding: 8px;
+  }
+
+  .separator {
+    border-bottom: 1px solid #fff;
+    border-top: 1px solid #000;
+    height: 0px;
+    opacity: 0.1;
   }
 </style>

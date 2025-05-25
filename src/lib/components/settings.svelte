@@ -67,7 +67,6 @@
     padding: 16px;
     align-content: flex-start;
     color: #fff;
-    border-top: 1px solid #222;
   }
 
   .rows {

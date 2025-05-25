@@ -32,5 +32,6 @@
     bottom: 0;
     backdrop-filter: blur(100px);
     background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0px -8px 16px rgba(0, 0, 0, 0.5);
   }
 </style>
