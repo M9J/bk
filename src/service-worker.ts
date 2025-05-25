@@ -13,25 +13,25 @@ self.addEventListener("fetch", (event: any) => {
   }
 
   // Normal caching logic for other requests
-  event.respondWith(
-    fetch(event.request).catch(() => {
-      caches
-        .match(event.request)
-        .then((response) => {
-          return (
-            response ||
-            fetch(event.request).then(async (fetchResponse: any) => {
-              return caches.open(CACHE_NAME).then((cache) => {
-                console.log("CACHED:", event.request.url);
-                cache.put(event.request, fetchResponse.clone());
-                return fetchResponse;
-              });
-            })
-          );
+  // event.respondWith(
+  //   fetch(event.request).catch(() => {
+  caches
+    .match(event.request)
+    .then((response) => {
+      return (
+        response ||
+        fetch(event.request).then(async (fetchResponse: any) => {
+          return caches.open(CACHE_NAME).then((cache) => {
+            console.log("CACHED:", event.request.url);
+            cache.put(event.request, fetchResponse.clone());
+            return fetchResponse;
+          });
         })
-        .catch((error) => {
-          console.error("Fetch failed:", event.request.url, error);
-        });
+      );
     })
-  );
+    .catch((error) => {
+      console.error("Fetch failed:", event.request.url, error);
+    });
+  // })
+  // );
 });
