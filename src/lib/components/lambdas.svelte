@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { ILambda } from "$lib/interfaces/Lambda";
-  import { getLambdas, runLambda } from "$lib/util/lambdas";
+  import { getLambdas } from "$lib/util/lambdas";
   import { onMount } from "svelte";
 
   let lambdas: ILambda[] = [];
@@ -10,12 +10,9 @@
       const extractedLambdas = lambdaModules.map((lp) => lp.default);
       const hasLambdas = Array.isArray(extractedLambdas) ? extractedLambdas.length > 0 : false;
       if (hasLambdas) {
-        lambdas = extractedLambdas.map((el) => {
-          if (el.mainFn && typeof el.mainFn === "function") {
-            const mainFnResult = el.mainFn();
-            el.result = mainFnResult;
-            return el;
-          } else return el;
+        lambdas = extractedLambdas;
+        lambdas.forEach((l: ILambda) => {
+          if (!l.result && l.action && typeof l.action === "function") l.result = l.action();
         });
       }
     }
@@ -27,7 +24,7 @@
     {#each lambdas as lambda}
       <div class="lambda">
         <div class="lambda-title">
-          {lambda.title}: <span class="lambda-result">{lambda.result}</span>
+          {lambda.prompt}: <span class="lambda-result">{lambda.result}</span>
         </div>
       </div>
     {/each}

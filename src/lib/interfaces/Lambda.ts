@@ -1,5 +1,5 @@
 export interface ILambda {
-  title?: string;
-  mainFn?: Function;
-  result?: any;
+  prompt?: string;
+  action?: Function;
+  result?: string | number | boolean | null | undefined;
 }
