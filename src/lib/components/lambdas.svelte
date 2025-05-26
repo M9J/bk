@@ -33,7 +33,7 @@
   }
 
   async function runLambda(lambda: ILambda, index: number) {
-    next(() => {
+    next(async () => {
       if (lambda.action && typeof lambda.action === "function") {
         const updateFn = (v: any) => {
           results.update((r) => {
@@ -41,7 +41,7 @@
             return r;
           });
         };
-        const result = lambda.action(updateFn);
+        const result = await lambda.action(updateFn);
         if (result) updateFn(result);
       }
     });

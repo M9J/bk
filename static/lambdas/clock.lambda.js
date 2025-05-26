@@ -1,5 +1,6 @@
 export const prompt = "Current time";
-export const action = (setOutput) => {
+
+export async function action(out) {
   const dt = new Date();
   let hh = 0;
   const hours = dt.getHours();
@@ -9,9 +10,9 @@ export const action = (setOutput) => {
   const ss = String(dt.getSeconds()).padStart(2, "0");
   const ampm = hours / 12 > 1 ? "PM" : "AM";
   const time = hh + ":" + mm + ":" + ss + " " + ampm;
-  setOutput(time);
-  let tmr1 = setTimeout(() => {
-    clearTimeout(tmr1);
-    action(setOutput);
+  out(time);
+  let tmr = setTimeout(() => {
+    clearTimeout(tmr);
+    action(out);
   }, 1000);
-};
+}
