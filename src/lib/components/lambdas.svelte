@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { ILambda } from "$lib/interfaces/Lambda";
+  import { next } from "$lib/util/common";
   import { getLambdas } from "$lib/util/lambdas";
   import { onMount } from "svelte";
   import { writable } from "svelte/store";
@@ -10,10 +11,8 @@
   onMount(async () => {
     const lambdaModules = await getLambdas();
     if (lambdaModules) {
-      console.log("lambdaModules", lambdaModules);
       const hasLambdas = Array.isArray(lambdaModules) ? lambdaModules.length > 0 : false;
       if (hasLambdas) {
-        // for (let i = 0; i < 1; i++) lambdaModules.push(...lambdaModules);
         const lambdasCollection = [];
         for (const lambdaModule of lambdaModules) {
           lambdasCollection.push({
@@ -34,16 +33,18 @@
   }
 
   async function runLambda(lambda: ILambda, index: number) {
-    let tmr1 = setTimeout(() => {
+    next(() => {
       if (lambda.action && typeof lambda.action === "function") {
-        clearTimeout(tmr1);
-        const result = lambda.action();
-        results.update((r) => {
-          r[index] = result;
-          return r;
-        });
+        const updateFn = (v: any) => {
+          results.update((r) => {
+            r[index] = v;
+            return r;
+          });
+        };
+        const result = lambda.action(updateFn);
+        if (result) updateFn(result);
       }
-    }, Math.random() * 0);
+    });
   }
 </script>
 
