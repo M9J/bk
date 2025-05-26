@@ -2,20 +2,23 @@
   import type { ILambda } from "$lib/interfaces/Lambda";
   import { getLambdas } from "$lib/util/lambdas";
   import { onMount } from "svelte";
+  import { writable } from "svelte/store";
 
   let lambdas: ILambda[] = [];
+  const results = writable<Array<any>>([]);
+
   onMount(async () => {
     const lambdaModules = await getLambdas();
     if (lambdaModules) {
       console.log("lambdaModules", lambdaModules);
       const hasLambdas = Array.isArray(lambdaModules) ? lambdaModules.length > 0 : false;
       if (hasLambdas) {
-        for (let i = 0; i < 2; i++) lambdaModules.push(...lambdaModules);
+        // for (let i = 0; i < 1; i++) lambdaModules.push(...lambdaModules);
         const lambdasCollection = [];
         for (const lambdaModule of lambdaModules) {
           lambdasCollection.push({
             ...lambdaModule,
-            result: null,
+            result: writable(""),
           });
         }
         lambdas = lambdasCollection;
@@ -26,26 +29,31 @@
 
   async function runLambdas(lambdas: ILambda[]) {
     const hasLambdas = Array.isArray(lambdas) ? lambdas.length > 0 : false;
-    if (hasLambdas) {
-      for (const lambda of lambdas) {
-        runLambda(lambda);
-      }
-    }
+    if (hasLambdas)
+      for (const [index, lambda] of Object.entries(lambdas)) runLambda(lambda, Number(index));
   }
 
-  async function runLambda(lambda: ILambda) {
-    if (lambda.action && typeof lambda.action === "function") {
-      lambda.result = lambda.action();
-    }
+  async function runLambda(lambda: ILambda, index: number) {
+    let tmr1 = setTimeout(() => {
+      if (lambda.action && typeof lambda.action === "function") {
+        clearTimeout(tmr1);
+        const result = lambda.action();
+        results.update((r) => {
+          r[index] = result;
+          return r;
+        });
+      }
+    }, Math.random() * 0);
   }
 </script>
 
 {#if lambdas.length > 0}
   <div class="lambdas-container">
-    {#each lambdas as lambda}
+    {#each lambdas as lambda, index (index)}
       <div class="lambda">
         <div class="lambda-title">
-          {lambda.prompt}: <span class="lambda-result">{lambda.result}</span>
+          {lambda.prompt}:
+          <span class="lambda-result">{$results[index] ?? "..."}</span>
         </div>
       </div>
     {/each}
