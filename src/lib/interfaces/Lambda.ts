@@ -1,4 +1,4 @@
 export interface ILambda {
-  prompt?: string;
-  action?: Function;
+  prompt: string;
+  action: Function;
 }
