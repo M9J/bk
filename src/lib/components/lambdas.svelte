@@ -1,8 +1,7 @@
 <script lang="ts">
   import type { ILambda } from "$lib/interfaces/Lambda";
-  import { getLambdas, runLambdas, lambdaResults } from "$lib/util/lambdas";
+  import { getLambdas, lambdaResults, runLambdas } from "$lib/util/lambdas";
   import { onMount } from "svelte";
-  import { writable } from "svelte/store";
 
   let lambdas: ILambda[] = [];
   const results = lambdaResults;

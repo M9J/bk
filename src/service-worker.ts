@@ -10,17 +10,23 @@ self.addEventListener("fetch", (event: FetchEvent) => {
   }
 
   event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      // Return cached response if available, otherwise fetch from network
-      return cachedResponse || fetch(event.request).then(async (networkResponse) => {
-        return caches.open(CACHE_NAME).then((cache) => {
-          console.log("CACHED:", event.request.url);
-          cache.put(event.request, networkResponse.clone());
-          return networkResponse;
-        });
-      });
-    }).catch((error) => {
-      console.error("Fetch failed:", event.request.url, error);
-    })
+    caches
+      .match(event.request)
+      .then((cachedResponse) => {
+        // Return cached response if available, otherwise fetch from network
+        return (
+          cachedResponse ||
+          fetch(event.request).then(async (networkResponse) => {
+            return caches.open(CACHE_NAME).then((cache) => {
+              console.log("CACHED:", event.request.url);
+              cache.put(event.request, networkResponse.clone());
+              return networkResponse;
+            });
+          })
+        );
+      })
+      .catch((error) => {
+        console.error("Fetch failed:", event.request.url, error);
+      })
   );
 });
