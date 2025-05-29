@@ -2,13 +2,11 @@ export const prompt = "Current time";
 
 export async function action(out) {
   const dt = new Date();
-  let hh = 0;
-  const hours = dt.getHours();
-  if (hours > 12) hh = hours - 12;
-  hh = String(hh).padStart(2, "0");
+  const h = dt.getHours();
+  const hh = String(h > 12 ? h - 12 : h).padStart(2, "0");
   const mm = String(dt.getMinutes()).padStart(2, "0");
   const ss = String(dt.getSeconds()).padStart(2, "0");
-  const ampm = hours / 12 > 1 ? "PM" : "AM";
+  const ampm = h < 12 ? "AM" : "PM";
   const time = hh + ":" + mm + ":" + ss + " " + ampm;
   out(time);
   let tmr = setTimeout(() => {

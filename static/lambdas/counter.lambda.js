@@ -11,5 +11,5 @@ function startCounter(out) {
   let tmr = setTimeout(() => {
     clearTimeout(tmr);
     startCounter(out);
-  }, 100);
+  }, 1);
 }
