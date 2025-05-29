@@ -1,51 +1,22 @@
 <script lang="ts">
   import type { ILambda } from "$lib/interfaces/Lambda";
-  import { next } from "$lib/util/common";
-  import { getLambdas } from "$lib/util/lambdas";
+  import { getLambdas, runLambdas, lambdaResults } from "$lib/util/lambdas";
   import { onMount } from "svelte";
   import { writable } from "svelte/store";
 
   let lambdas: ILambda[] = [];
-  const results = writable<Array<any>>([]);
+  const results = lambdaResults;
 
   onMount(async () => {
     const lambdaModules = await getLambdas();
     if (lambdaModules) {
       const hasLambdas = Array.isArray(lambdaModules) ? lambdaModules.length > 0 : false;
       if (hasLambdas) {
-        const lambdasCollection = [];
-        for (const lambdaModule of lambdaModules) {
-          lambdasCollection.push({
-            ...lambdaModule,
-            result: writable(""),
-          });
-        }
-        lambdas = lambdasCollection;
+        lambdas = lambdaModules;
         runLambdas(lambdas);
       }
     }
   });
-
-  async function runLambdas(lambdas: ILambda[]) {
-    const hasLambdas = Array.isArray(lambdas) ? lambdas.length > 0 : false;
-    if (hasLambdas)
-      for (const [index, lambda] of Object.entries(lambdas)) runLambda(lambda, Number(index));
-  }
-
-  async function runLambda(lambda: ILambda, index: number) {
-    next(async () => {
-      if (lambda.action && typeof lambda.action === "function") {
-        const updateFn = (v: any) => {
-          results.update((r) => {
-            r[index] = v;
-            return r;
-          });
-        };
-        const result = await lambda.action(updateFn);
-        if (result) updateFn(result);
-      }
-    });
-  }
 </script>
 
 {#if lambdas.length > 0}
