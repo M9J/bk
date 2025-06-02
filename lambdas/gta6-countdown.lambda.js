@@ -10,10 +10,7 @@ export async function action(out) {
   const epochDiff = Number(releaseTimestamp) - Date.now();
   const secondsRemaining = formatWithCommas(parseInt(epochDiff / 1000)) + " seconds";
   out(`${daysRemaining} (${secondsRemaining})`);
-  let tmr = setTimeout(() => {
-    clearTimeout(tmr);
-    action(out);
-  }, 1000);
+  return () => action(out);
 }
 
 function formatWithCommas(number) {

@@ -9,8 +9,5 @@ export async function action(out) {
   const ampm = h < 12 ? "AM" : "PM";
   const time = hh + ":" + mm + ":" + ss + " " + ampm;
   out(time);
-  let tmr = setTimeout(() => {
-    clearTimeout(tmr);
-    action(out);
-  }, 1000);
+  return () => action(out);
 }
