@@ -8,7 +8,8 @@ export async function getLambdas() {
   try {
     const lambdasFolderIndexModule = await fetch(lambdasFolder + "/index.json");
     if (lambdasFolderIndexModule) {
-      const lambdasIndex = await lambdasFolderIndexModule.json();
+      let lambdasIndex = await lambdasFolderIndexModule.json();
+      lambdasIndex = lambdasIndex.filter((l: string) => !!l);
       const hasLambdasIndex = Array.isArray(lambdasIndex) ? lambdasIndex.length > 0 : false;
       if (hasLambdasIndex) {
         const lambdaFileFetchPromises = lambdasIndex.map(
@@ -25,8 +26,11 @@ export async function getLambdas() {
 
 export async function runLambdas(lambdas: ILambda[]) {
   const hasLambdas = Array.isArray(lambdas) ? lambdas.length > 0 : false;
-  if (hasLambdas)
-    for (const [index, lambda] of Object.entries(lambdas)) runLambda(lambda, Number(index));
+  if (hasLambdas) {
+    for (const [index, lambda] of Object.entries(lambdas)) {
+      runLambda(lambda, Number(index));
+    }
+  }
 }
 
 export const lambdaResults = writable<Array<any>>([]);
@@ -41,7 +45,27 @@ export async function runLambda(lambda: ILambda, index: number) {
         });
       };
       const result = await lambda.action(updateFn);
-      if (result) updateFn(result);
+      const isValue = ["string", "number", "boolean"].includes(typeof result);
+      const isObject = typeof result === "object";
+      const isFunc = typeof result === "function";
+      if (result) {
+        if (isValue) updateFn(result);
+        else if (isObject) {
+          const isArray = Array.isArray(result);
+          if (isArray) {
+            updateFn(result.join(","));
+          } else updateFn(JSON.stringify(result));
+        } else if (isFunc) {
+          const repeatedFn = () => {
+            let tmr1 = setTimeout(() => {
+              clearTimeout(tmr1);
+              result(updateFn);
+              repeatedFn();
+            }, 1000);
+          };
+          repeatedFn();
+        }
+      }
     }
   });
 }
