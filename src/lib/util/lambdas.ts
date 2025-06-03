@@ -61,7 +61,7 @@ export async function runLambda(lambda: ILambda, index: number) {
               clearTimeout(tmr1);
               result(updateFn);
               repeatedFn();
-            }, 1000);
+            }, lambda.CONFIG_ACTION_DELAY || 1000);
           };
           repeatedFn();
         }

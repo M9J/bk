@@ -1,8 +1,9 @@
 export const prompt = "Timestamp Password";
 
+export const CONFIG_ACTION_DELAY = 5000;
+
 export async function action(out) {
   const offsetStr = findOffsetString();
-  const accessStr = findAccessString();
   const dict = [...numArr, ...lCharArr, ...uCharArr];
   const dict16Bit = createDictArr(dict, 16);
   const offsetDict = offsetDictionary(dict16Bit, offsetStr);
@@ -23,11 +24,6 @@ function findOffsetString() {
   const ms = String(parseInt(new Date().getMilliseconds() / 10)).padStart(2, "0");
   const salt = `${year}${month}${day}${hh}${mm}${ss}${ms}`;
   return salt;
-}
-
-function findAccessString() {
-  const offest = "000" + Date.now();
-  return offest;
 }
 
 function createDictArr(dict, len) {
