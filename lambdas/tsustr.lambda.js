@@ -1,4 +1,4 @@
-export const prompt = "Timestamp Password";
+export const prompt = "Timestamp Unique String";
 
 export const CONFIG_ACTION_DELAY = 5000;
 
