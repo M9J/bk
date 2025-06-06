@@ -1,4 +1,4 @@
-export const prompt = "Unique String";
+export const prompt = "Random String Pattern";
 
 export const CONFIG_ACTION_DELAY = 10000;
 
