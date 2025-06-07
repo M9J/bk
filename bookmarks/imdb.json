@@ -1,4 +1,5 @@
 {
   "NAME": "IMDB",
-  "LINK": "https://imdb.com"
+  "LINK": "https://imdb.com",
+  "IS_PINNED": true
 }
