@@ -1,6 +1,6 @@
 export const prompt = "Days remaning till GTA VI release";
 
-export async function action(out) {
+export async function action(ctx) {
   const releaseTimestamp = "1779753600000";
   const today = new Date();
   const releaseDate = new Date(Number(releaseTimestamp));
@@ -9,8 +9,8 @@ export async function action(out) {
   const daysRemaining = daysDifference + " days";
   const epochDiff = Number(releaseTimestamp) - Date.now();
   const secondsRemaining = formatWithCommas(parseInt(epochDiff / 1000)) + " seconds";
-  out(`${daysRemaining} (${secondsRemaining})`);
-  return () => action(out);
+  ctx.updateValue(`${daysRemaining} (${secondsRemaining})`);
+  return () => action(ctx);
 }
 
 function formatWithCommas(number) {

@@ -44,7 +44,8 @@ export async function runLambda(lambda: ILambda, index: number) {
           return currentArr;
         });
       };
-      const result = await lambda.action(updateFn);
+      const contextObj = { updateValue: updateFn };
+      const result = await lambda.action(contextObj);
       const isValue = ["string", "number", "boolean"].includes(typeof result);
       const isObject = typeof result === "object";
       const isFunc = typeof result === "function";

@@ -2,10 +2,10 @@ export const prompt = "Random String Pattern";
 
 export const CONFIG_ACTION_DELAY = 10000;
 
-export function action(out) {
+export function action(ctx) {
   let str = genRandomChar() + genRandomDigit() + genRandomChar() + genRandomDigit(2);
-  out(str);
-  return () => action(out);
+  ctx.updateValue(str);
+  return () => action(ctx);
 }
 
 function getRandomNumber(min = 0, max = 0) {

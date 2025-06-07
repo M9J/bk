@@ -1,6 +1,6 @@
 export const prompt = "Exchange rates";
 
-export async function action(out) {
+export async function action(ctx) {
   const currencies = ["USD", "AUD"];
   const ratesResponseJSON = {};
   for (const curr of currencies) {
@@ -12,7 +12,7 @@ export async function action(out) {
     rates += curr + " = " + rate.conversion_rate;
     rates += index < entries.length ? "\n" : "";
   }
-  out(rates);
+  ctx.updateValue(rates);
 }
 
 async function fetchExchangeRates(curr1 = "INR", curr2 = "INR") {
