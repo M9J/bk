@@ -23,9 +23,9 @@
     {#each lambdas as lambda, index (index)}
       <div class="lambda">
         <div class="lambda-title">
-          {lambda.prompt}:
-          <span class="lambda-result">{$results[index] ?? "..."}</span>
+          {lambda.prompt}:&nbsp;
         </div>
+        <p class="lambda-result">{$results[index] ?? "..."}</p>
       </div>
     {/each}
   </div>
@@ -45,5 +45,11 @@
     color: #fff;
     padding: 16px;
     border-radius: 16px;
+    display: flex;
+  }
+
+  .lambda-result {
+    white-space: pre-line;
+    /* white-space: pre-wrap; */
   }
 </style>
