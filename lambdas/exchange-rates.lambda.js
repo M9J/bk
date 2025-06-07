@@ -4,7 +4,7 @@ export async function action(out) {
   const currencies = ["USD", "AUD"];
   const ratesResponseJSON = {};
   for (const curr of currencies) {
-    ratesResponseJSON[curr] = await fetchExchangeRates(curr);
+    if (curr) ratesResponseJSON[curr] = await fetchExchangeRates(curr);
   }
   let rates = "";
   const entries = Object.entries(ratesResponseJSON);
