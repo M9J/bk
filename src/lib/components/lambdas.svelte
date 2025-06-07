@@ -50,6 +50,5 @@
 
   .lambda-result {
     white-space: pre-line;
-    /* white-space: pre-wrap; */
   }
 </style>
