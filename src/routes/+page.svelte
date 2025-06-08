@@ -1,37 +1,25 @@
 <script>
-  import Bookmarks from "$lib/components/bookmarks.svelte";
-  import Header from "$lib/components/header.svelte";
-  import Lambdas from "$lib/components/lambdas.svelte";
-  import Settings from "$lib/components/settings.svelte";
-  import { selectedPage } from "$lib/stores/main";
+  import { isGranted } from "$lib/util/access";
+  import App from "../app.svelte";
 </script>
 
-<div class="app-wrapper">
-  <Bookmarks />
-  <Lambdas />
-  <div class="app-bottom-wrapper">
-    <Header />
-    {#if $selectedPage === "settings"}
-      <Settings />
-    {/if}
-  </div>
-</div>
+{#await isGranted()}
+  <div class="message">Access: Checking...</div>
+{:then isAccessible}
+  {#if isAccessible}
+    <App />
+  {:else}
+    <div class="message">Access: 401 Unauthorized</div>
+  {/if}
+{:catch error}
+  <div class="message">Access: ERROR: {error}</div>
+{/await}
 
 <style>
-  .app-wrapper {
+  .message {
     flex: 1;
-    min-height: 0;
-    overflow: auto;
     background-color: #222;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .app-bottom-wrapper {
-    position: sticky;
-    bottom: 0;
-    backdrop-filter: blur(100px);
-    background: rgba(0, 0, 0, 0.5);
-    box-shadow: 0px -8px 16px rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 16px;
   }
 </style>
