@@ -4,7 +4,7 @@
 </script>
 
 {#await isGranted()}
-  <div class="message">Access: Checking...</div>
+  <div class="message"></div>
 {:then isAccessible}
   {#if isAccessible}
     <App />
