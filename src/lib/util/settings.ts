@@ -1,4 +1,5 @@
 export function hardReloadApplication() {
+  localStorage.removeItem("pwd");
   navigator.serviceWorker.getRegistrations().then((registrations) => {
     registrations.forEach((registration) => registration.unregister());
     console.log("All service workers have been unregistered.");
