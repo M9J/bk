@@ -1,10 +1,10 @@
-export const isGranted = async () => await run();
+export const isGranted = async () => await checkAccess();
 
 const STORED_HASH =
   "c3bb7c6ce286577d5945d6e452b9c8dca103276a88f9c5c4587372b957f164d6d636acce2422ce3410488b3feb6a9e7b2bf3aeb576614d23d958d3086e5f00f4";
 const STORED_SALT = "1976f6ba3ea71cc44453f8de0e412b6b";
 
-async function run() {
+async function checkAccess() {
   const pwd = localStorage.getItem("pwd") || prompt("Password") || "";
   const isGranted = await checkIfGranted(pwd);
   if (isGranted) localStorage.setItem("pwd", pwd);
