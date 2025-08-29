@@ -77,11 +77,12 @@
     <div>Repo deploy status:</div>
     <div>
       <img
-        src="https://github.com/m9j/bk/actions/workflows/deploy.yml/badge.svg"
-        alt="Github Deploy Status"
+      src="https://github.com/m9j/bk/actions/workflows/deploy.yml/badge.svg"
+      alt="Github Deploy Status"
       />
     </div>
   </div>
+  <br />
   <div class="columns">
     <div>Eruda: {isErudaEnabledState ? "ENABLED" : "DISABLED"}</div>
     <div class="rows">
