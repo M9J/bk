@@ -21,6 +21,31 @@
     latestVersion.update((v) => (v = latestVersionResp));
     isNew.update((v) => (v = Number(get(latestVersion)) > Number(get(currentVersion))));
   }
+
+  let isErudaEnabled: string | null = null;
+  $: isErudaEnabledState = isErudaEnabled ? true : false;
+
+  if (typeof localStorage !== "undefined") {
+    isErudaEnabled = localStorage.getItem("isErudaEnabled");
+  }
+
+  function enableEruda() {
+    const erudaDevTools = (window as any).eruda;
+    if (erudaDevTools) erudaDevTools.init();
+    isErudaEnabled = "1";
+    if (typeof localStorage !== "undefined") {
+      localStorage.setItem("isErudaEnabled", "1");
+    }
+  }
+
+  function disableEruda() {
+    const erudaDevTools = (window as any).eruda;
+    if (erudaDevTools) erudaDevTools.destroy();
+    isErudaEnabled = null;
+    if (typeof localStorage !== "undefined") {
+      localStorage.removeItem("isErudaEnabled");
+    }
+  }
 </script>
 
 <div class="settings-container hide" id="settings-container">
@@ -55,6 +80,16 @@
         src="https://github.com/m9j/bk/actions/workflows/deploy.yml/badge.svg"
         alt="Github Deploy Status"
       />
+    </div>
+  </div>
+  <div class="columns">
+    <div>Eruda: {isErudaEnabledState ? "ENABLED" : "DISABLED"}</div>
+    <div class="rows">
+      {#if !isErudaEnabledState}
+        <div><button on:click={() => enableEruda()}>Enable Eruda</button></div>
+      {:else}
+        <div><button on:click={() => disableEruda()}>Disable Eruda</button></div>
+      {/if}
     </div>
   </div>
 </div>
