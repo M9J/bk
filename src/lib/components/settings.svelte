@@ -86,9 +86,9 @@
     <div>Eruda: {isErudaEnabledState ? "ENABLED" : "DISABLED"}</div>
     <div class="rows">
       {#if !isErudaEnabledState}
-        <div><button class="settings-button" on:click={() => enableEruda()}>Enable Eruda</button></div>
+        <button class="settings-button" on:click={() => enableEruda()}>Enable Eruda</button>
       {:else}
-        <div><button class="settings-button" on:click={() => disableEruda()}>Disable Eruda</button></div>
+        <button class="settings-button" on:click={() => disableEruda()}>Disable Eruda</button>
       {/if}
     </div>
   </div>
