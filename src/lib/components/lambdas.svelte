@@ -46,6 +46,7 @@
     padding: 16px;
     border-radius: 16px;
     display: flex;
+    flex-direction: column;
   }
 
   .lambda-result {
