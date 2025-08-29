@@ -51,5 +51,6 @@
 
   .lambda-result {
     white-space: pre-line;
+    font-size: 150%;
   }
 </style>
