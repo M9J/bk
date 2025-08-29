@@ -1,7 +1,7 @@
 const STREAM_URLS = [
     {
-        name: "",
-        link: ""
+        name: "Radyo EZ Konpa",
+        link: "http://198.178.123.17:9712/stream/1/;"
     },
 ]
 
