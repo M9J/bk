@@ -3,6 +3,91 @@ const STREAM_URLS = [
     name: "Radyo EZ Konpa",
     link: "http://198.178.123.17:9712/stream/1/;",
   },
+{
+    name: "World Music Radio",
+    link: "http://stream.wlmm.dk:8010/wmrmp3;",
+  },
+{
+    name: "KWMV",
+    link: "https://ice41.securenetsystems.net/KWMV;",
+  },
+{
+    name: "Top FM",
+    link: "http://dione.shoutca.st:8420/;",
+  },
+{
+    name: "Truckers Channel",
+    link: "http://philae.shoutca.st:8388/;",
+  },
+{
+    name: "All Time Oldies",
+    link: "https://kea.cdnstream.com/1295_128;",
+  },
+{
+    name: "106.1 KISS FM",
+    link: "https://stream.revma.ihrhls.com/zc2245;",
+  },
+{
+    name: "Christian Radio 1",
+    link: "http://k2.usastreams.com/Christian;",
+  },
+{
+    name: "Jesus Coming FM",
+    link: "http://live.jesuscomingfm.com:8584/;",
+  },
+{
+    name: "Ephphatha FM",
+    link: "https://ephphatha.radioca.st/;",
+  },
+{
+    name: "Chuck FM 102.5",
+    link: "https://ice23.securenetsystems.net/QXFM;",
+  },
+{
+    name: "Electronic Music",
+    link: "https://strm112.1.fm/atr_mobile_mp3;",
+  },
+{
+    name: "Modern Age",
+    link: "https://r5.zetcast.net/flac;",
+  },
+{
+    name: "Vintage Experimental",
+    link: "https://streams.95bfm.com/stream112;",
+  },
+{
+    name: "City Pop FM Chile",
+    link: "http://cityradio.ddns.net:8000/citypop;",
+  },
+{
+    name: "KFRE",
+    link: "https://kfre.s3.amazonaws.com/truehd/FLAC/program.m3u8;",
+  },
+{
+    name: "Radio Paradise Global",
+    link: "http://stream.radioparadise.com/global-flac;",
+  },
+{
+    name: "Trance",
+    link: "http://stream.trance.ie:8000/tpmixes;",
+  },
+{
+    name: "Radio Paradise",
+    link: "http://stream.radioparadise.com/flac;",
+  },
+{
+    name: "Radio Paradise Mellow",
+    link: "http://stream.radioparadise.com/mellow-flac;",
+  },
+{
+    name: "Radio Paradise Rock",
+    link: "http://stream.radioparadise.com/rock-flac;",
+  },
+{
+    name: "Open Sky Radio",
+    link: "https://audio.opensky.radio:8082/flac?_res_tag_=audio;",
+  },
+
 ];
 
 export const title = "Stream Player";
