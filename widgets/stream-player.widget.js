@@ -92,20 +92,25 @@ const STREAM_URLS = [
 export const title = "Stream Player";
 
 export const element = (() => {
+  console.log("1");
   const rootElem = document.createElement("div");
   rootElem.style.fontFamily = "Arial, sans-serif";
 
   // Load Howler.js from CDN
   const script = document.createElement("script");
   script.src = "https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js";
+  console.log("2");
   script.onload = () => {
+    console.log("3: script.onload");
     let currentHowl = null;
     const listElem = document.createElement("div");
     listElem.style.display = "flex";
     listElem.style.gap = "16px";
     listElem.style.flexWrap = "wrap";
+    console.log("4");
 
     STREAM_URLS.forEach((stream, index) => {
+      console.log("5: STREAM_URLS.forEach", stream, index);
       const btn = document.createElement("button");
       btn.dataset.customId = Date.now() + "." + index;
       btn.innerText = `▶ ${stream.name}`;
@@ -116,16 +121,21 @@ export const element = (() => {
       btn.style.color = "#fff";
       btn.style.cursor = "pointer";
       btn.style.userSelect = "none";
+      console.log("6");
 
       btn.onclick = () => {
+        console.log("7: btn.onclick", stream, index, btn);
         if (currentHowl) {
+          console.log("8");
           if (currentHowl.currentlyPlaying.btn.dataset.customId === btn.dataset.customId) {
+            console.log("9");
             currentHowl.stop();
             currentHowl.unload();
             currentHowl.currentlyPlaying.btn.style.background = "#222";
             currentHowl = null;
             return;
           } else {
+            console.log("10");
             currentHowl.stop();
             currentHowl.unload();
             currentHowl.currentlyPlaying.btn.style.background = "#222";
@@ -133,6 +143,7 @@ export const element = (() => {
           }
         }
 
+        console.log("11");
         currentHowl = new Howl({
           src: [stream.link],
           html5: true,
@@ -149,6 +160,7 @@ export const element = (() => {
             btn.innerText = `▶ ${stream.name}`;
           },
         });
+        console.log("12");
 
         btn.style.background = "#007bff";
         currentHowl.uniqueCustomId = Date.now();
@@ -158,13 +170,16 @@ export const element = (() => {
         };
         currentHowl.play();
       };
+      console.log("13");
 
       listElem.appendChild(btn);
     });
 
+    console.log("14");
     rootElem.appendChild(listElem);
   };
 
+  console.log("15");
   document.head.appendChild(script);
   return rootElem;
 })();
