@@ -9,7 +9,7 @@ const STREAM_URLS = [
   },
   {
     name: "1.FM - Amsterdam Trance",
-    link: "https://audio.opensky.radio:8082/flac?_res_tag_=audio;",
+    link: "https://strm112.1.fm/atr_mobile_mp3",
   },
 ];
 
