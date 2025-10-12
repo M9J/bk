@@ -11,6 +11,10 @@ const STREAM_URLS = [
     name: "1.FM - Amsterdam Trance",
     link: "https://strm112.1.fm/atr_mobile_mp3",
   },
+  {
+    name: "1.FM - Absolute Top 40",
+    link: "https://strmreg.1.fm/top40_mobile_mp3",
+  },
 ];
 
 export const title = "Stream Player";
