@@ -7,6 +7,10 @@ const STREAM_URLS = [
     name: "Open Sky Radio",
     link: "https://audio.opensky.radio:8082/flac?_res_tag_=audio;",
   },
+  {
+    name: "1.FM - Amsterdam Trance",
+    link: "https://audio.opensky.radio:8082/flac?_res_tag_=audio;",
+  },
 ];
 
 export const title = "Stream Player";
