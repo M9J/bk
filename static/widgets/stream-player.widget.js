@@ -147,7 +147,22 @@ export const element = (() => {
         currentHowl = new Howl({
           src: [stream.link],
           html5: true,
-          format: ["mp3", "aac", "ogg"],
+          format: [
+            "mp3",
+            "mpeg",
+            "mpga",
+            "wav",
+            "aac",
+            "m4a",
+            "mp4",
+            "ogg",
+            "oga",
+            "opus",
+            "webm",
+            "weba",
+            "flac",
+            "caf",
+          ],
           autoplay: true,
           volume: 1.0,
           onplay: () => {
