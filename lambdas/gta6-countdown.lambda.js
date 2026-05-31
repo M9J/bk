@@ -9,7 +9,7 @@ export async function action(ctx) {
   const daysDifference = Math.ceil(epochDiff / (1000 * 3600 * 24));
   const daysRemaining = daysDifference + " days";
   const millisecondsLeft = Math.max(0, Math.floor(epochDiff));
-  const millisecondsRemaining = formatWithCommas(millisecondsLeft) + " milliseconds";
+  const millisecondsRemaining = formatWithCommas(millisecondsLeft) + " ms";
   ctx.updateValue(`${daysRemaining} (${millisecondsRemaining})`);
   return () => action(ctx);
 }
