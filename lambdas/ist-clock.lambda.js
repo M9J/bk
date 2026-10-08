@@ -1,4 +1,4 @@
-export const prompt = "Days remaning till GTA VI release";
+export const prompt = "Clock (IST)";
 
 export const CONFIG_ACTION_DELAY = 1000;
 
